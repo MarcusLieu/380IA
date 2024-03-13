@@ -93,17 +93,18 @@ public class DisasterVictim {
     public void setGender(String gender) {
         this.gender = gender;
     }
-    public void addPersonalBelonging(Supply supply, Location location) throws IllegalArgumentException{
+    public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {
             this.personalBelongings = new ArrayList<Supply>();
         }
 
         if (location.getOccupants().contains(this) && location.getSupplies().contains(supply)) {
             this.personalBelongings.add(supply);
-            location.removeSupply(supply);
-        }
-        else {
-            throw new IllegalArgumentException("Supplies not available");
+            int position = location.getSupplies().indexOf(supply);
+            location.getSupplies().get(position).setQuantity(location.getSupplies().get(position).getQuantity() - 1);
+            if (location.getSupplies().get(position).getQuantity() == 0) {
+                location.removeSupply(supply);
+            }
         }
     }
     public void removePersonalBelonging(Supply supply) {

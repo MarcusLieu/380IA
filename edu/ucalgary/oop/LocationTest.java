@@ -8,6 +8,8 @@ package edu.ucalgary.oop;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
+
+import java.beans.Transient;
 import java.util.ArrayList;
 
 public class LocationTest {
@@ -90,4 +92,21 @@ public class LocationTest {
         location.setSupplies(newSupplies);
         assertTrue("setSupplies should replace the supplies list with the new list", containsSupply(location.getSupplies(), supply));
     }
+
+    @Test
+    public void testSuppliesRemovedIfQuantityZero() {
+        Supply a = new Supply("dab pen", 1);
+        Location testloc = new Location("test location", "1234 ave");
+        DisasterVictim testperson = new DisasterVictim("bob", "2024-01-20");
+        testloc.addSupply(a);
+        int orgSize = testloc.getSupplies().size();
+        testloc.addOccupant(testperson);
+        testperson.addPersonalBelonging(a, testloc);
+        boolean correct = true;
+        if (testloc.getSupplies().size() == orgSize) {
+            correct = false;
+        }
+        assertTrue("Supplies size should be less since the quantity is 0", correct);
+    }
 }
+

@@ -4,11 +4,13 @@ package edu.ucalgary.oop;
 
 import static org.junit.Assert.*;
 
+import java.beans.Transient;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.xml.sax.helpers.LocatorImpl;
 
 public class DisasterVictimTest {
     private DisasterVictim victim;
@@ -135,7 +137,10 @@ public class DisasterVictimTest {
     @Test
     public void testAddPersonalBelonging() {
         Supply newSupply = new Supply("Emergency Kit", 1);
-        victim.addPersonalBelonging(newSupply);
+        Location location = new Location("test location", "69 ave");
+        location.addSupply(newSupply);
+        location.addOccupant(victim);
+        victim.addPersonalBelonging(newSupply, location);
         ArrayList<Supply> testSupplies = victim.getPersonalBelongings();
         boolean correct = false;
  
@@ -184,7 +189,8 @@ public class DisasterVictimTest {
     public void testRemovePersonalBelonging() {
     
         Supply supplyToRemove = suppliesToSet.get(0); 
-        victim.addPersonalBelonging(supplyToRemove); 
+        Location location2 = new Location("test loc2", "THE O") ;
+        victim.addPersonalBelonging(supplyToRemove, location2); 
         victim.removePersonalBelonging(supplyToRemove);
 
         ArrayList<Supply> testSupplies = victim.getPersonalBelongings();
@@ -277,6 +283,25 @@ public class DisasterVictimTest {
         }
         assertTrue("setPersonalBelongings should correctly update personal belongings", correct);
     }
+
+    @Test
+    public void testSupplySizeIfNotInLocation() {
+        Location testLocation = new Location("test shelter", "4321 Shelter Ave");
+        Supply a = new Supply("bottle", 1);
+        Supply b = new Supply("vape", 1);
+        testLocation.addSupply(a);
+        DisasterVictim testVictim = new DisasterVictim("joe", "2024-01-20");
+        testVictim.addPersonalBelonging(a, testLocation);
+        int originalSize = testVictim.getPersonalBelongings().size();
+        testVictim.addPersonalBelonging(b, testLocation);
+        boolean correct = true;
+
+        if (testVictim.getPersonalBelongings().size() != originalSize) {
+            correct = false;
+        }
+        assertTrue("addPersonalBelongings should correctly update personalBelongings", correct);
+    }
+
 }
 
 

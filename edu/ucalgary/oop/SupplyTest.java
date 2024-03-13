@@ -64,4 +64,22 @@ testObjectCreation -> means testing Supply constructor:
         supply.setQuantity(20);
         assertEquals("setQuantity should update the quantity", 20, supply.getQuantity());
     }
+
+    @Test
+    public void testQuantityFromAddPersonalBelongings(){
+        Supply supply = new Supply("band-aid", 10);
+        Location location = new Location("ghetto school", "21 jump street");
+        DisasterVictim victim =  new DisasterVictim("joe", "2024-01-20");
+        location.addSupply(supply);
+        location.addOccupant(victim);
+        int orgQuantity = supply.getQuantity();
+        victim.addPersonalBelonging(supply, location);
+        boolean correct = true;
+
+        if (supply.getQuantity() >= orgQuantity) {
+            correct = false;
+        }
+
+        assertTrue("The supply quantity should be reduced by 1", correct);
+    }
 }
