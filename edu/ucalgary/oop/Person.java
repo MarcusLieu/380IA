@@ -14,6 +14,16 @@ public abstract class Person {
         return this.lastName;
     }
 
+    public int getAge() {
+        return this.age;
+    }
+
+    public void setAge(int age) {
+        if (age >= 0) {
+            this.age = age;
+        }
+    }
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

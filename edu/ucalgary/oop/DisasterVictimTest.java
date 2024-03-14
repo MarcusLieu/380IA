@@ -5,6 +5,7 @@ package edu.ucalgary.oop;
 import static org.junit.Assert.*;
 
 import java.beans.Transient;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -106,14 +107,6 @@ public class DisasterVictimTest {
         assertEquals("getEntryDate should return the expected entry date", EXPECTED_ENTRY_DATE, victim.getEntryDate());
     }
    
-    @Test
-    public void testSetAndGetGender() {
-        String newGender = "male";
-        victim.setGender(newGender);
-        assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
-    }
-	
-	
 
     @Test
     public void testAddFamilyConnection() {
@@ -302,6 +295,47 @@ public class DisasterVictimTest {
         assertTrue("addPersonalBelongings should correctly update personalBelongings", correct);
     }
 
+    @Test
+    public void testPersonAbstraction() {
+        DisasterVictim testVictim = new DisasterVictim("joey", "2024-01-20");
+        testVictim.setLastName("wheeler");
+        boolean correct = true;
+
+        if (testVictim.getLastName() == null) {
+            correct = false;
+        }
+        assertTrue("Disaster victim should inherit set last name from person", correct);
+    }
+
+    @Test(expected = IllegalArgumentException.class)    
+    public void testDateFormatInterface() {
+        DisasterVictim invalidVictim = new DisasterVictim("bob", "98/01/2024");
+    }
+
+    @Test
+    public void testSetAndGetGender() {
+        String newGender = "boy";
+        GenderRetrieval genderFile = new GenderRetrieval("edu/ucalgary/oop/GenderOptions.txt");
+        victim.setGender(newGender, genderFile);
+        assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
+    }
+
+    @Test(expected = IOException.class)
+    public void testGenderFileReading() {
+        GenderRetrieval genderFile = new GenderRetrieval("fileThatDoesntExist.txt");
+    }
+
+    @Test
+    public void testAgeVsBirthdate() {
+        DisasterVictim testVictim1 = new DisasterVictim("bill", "2024-01-20");
+        testVictim1.setDateOfBirth("1987-05-21");
+        testVictim1.setAge(19);
+        boolean correct = true;
+        if (testVictim1.getDateOfBirth() == "1987-05-21" && testVictim1.getAge() == 19) {
+            correct = false;
+        }
+        assertTrue("Should not be possible to set both date of birth and age as only 1 is allowed", correct);
+    } 
 }
 
 

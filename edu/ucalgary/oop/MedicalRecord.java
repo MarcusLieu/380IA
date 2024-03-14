@@ -3,7 +3,7 @@ package edu.ucalgary.oop;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class MedicalRecord {
+public class MedicalRecord implements DateFormat{
     private Location location; 
     private String treatmentDetails;
     private String dateOfTreatment; 

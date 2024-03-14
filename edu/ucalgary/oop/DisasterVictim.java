@@ -13,6 +13,7 @@ public class DisasterVictim extends Person implements DateFormat{
     private ArrayList<Supply> personalBelongings;
     private String gender;
     private static int counter;
+    private ArrayList<String> dietaryRestrictions;
 
     public DisasterVictim(String firstName, String ENTRY_DATE) throws IllegalArgumentException{
         this.firstName = firstName;
@@ -22,12 +23,6 @@ public class DisasterVictim extends Person implements DateFormat{
         this.ENTRY_DATE = validatedDate;
     }
 
-    public String getFirstName() {
-        return this.firstName;
-    }
-    public String getLastName() {
-        return this.lastName;
-    }
     public String getDateOfBirth() {
         return this.dateOfBirth;
     }
@@ -52,12 +47,6 @@ public class DisasterVictim extends Person implements DateFormat{
     public String getGender() {
         return this.gender;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
         String validatedDate = validateDate(dateOfBirth);
         this.dateOfBirth = validatedDate;
@@ -75,8 +64,11 @@ public class DisasterVictim extends Person implements DateFormat{
         this.familyConnections = familyConnections;
     }
     
-    public void setGender(String gender) {
-        this.gender = gender;
+    public void setGender(String gender, GenderRetrieval genderFile) {
+        ArrayList<String> genderList = genderFile.getGenderOptions();
+        if (genderList.contains(gender)) {
+            this.gender = gender;
+        }
     }
     public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {

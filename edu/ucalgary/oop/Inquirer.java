@@ -2,7 +2,6 @@ package edu.ucalgary.oop;
 
 public class Inquirer extends Person{
 
-
     private String info;
     private String ServicesPhoneNum;
 
