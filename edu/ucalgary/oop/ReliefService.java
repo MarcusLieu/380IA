@@ -1,17 +1,9 @@
-/**
- * This is a class that organizes information regarding the Relief Services provided
- * during an emergency. This information incldues who has called them, missing people, 
- * the date of inquiry, information that is provided, and the last known location
- * of the missing person
-*@author	Fatima Asif, Alend Maci, Marcus Lieu, Mohit Narula
-*@version	1.4
-*@since		1.0
-*/
+
 package edu.ucalgary.oop;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ReliefService{
+public class ReliefService implements DateFormat{
     private Inquirer inquirer;
     private DisasterVictim missingPerson;
     private String dateOfInquiry;

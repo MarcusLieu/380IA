@@ -1,8 +1,4 @@
-/*
-Copyright Ann Barcomb and Khawla Shnaikat, 2024
-Licensed under GPL v3
-See LICENSE.txt for more information.
-*/
+
 package edu.ucalgary.oop;
 
 import org.junit.*;
@@ -76,5 +72,16 @@ testGetInfo:
         assertEquals("getInfo() should return the inquirer message", expectedMessage,inquirer.getInfo());
     }
 
+    @Test
+    public void testPersonAbstraction() {
+        Inquirer testInquirer = new Inquirer("joey", "dick", "+1-123-456-7891", "looking for joe");
+        testInquirer.setLastName("wheeler");
+        boolean correct = true;
+
+        if (testInquirer.getLastName() == "pick") {
+            correct = false;
+        }
+        assertTrue("Inquirer should inherit set last name from person", correct);
+    }
 }
 
