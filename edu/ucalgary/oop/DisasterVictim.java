@@ -4,10 +4,7 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class DisasterVictim {
-    private String firstName;
-    private String lastName;
-    private String dateOfBirth;
+public class DisasterVictim extends Person implements DateFormat{
     private String comments;
     private int ASSIGNED_SOCIAL_ID;
     private ArrayList<MedicalRecord> medicalRecords;
@@ -21,14 +18,8 @@ public class DisasterVictim {
         this.firstName = firstName;
         this.ASSIGNED_SOCIAL_ID = counter;
         counter++;
-        Pattern entry_date_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-        Matcher myMatcher = entry_date_pat.matcher(ENTRY_DATE);
-        if(myMatcher.find()) {
-            this.ENTRY_DATE = ENTRY_DATE;
-        }
-        else {
-            throw new IllegalArgumentException();
-        }
+        String validatedDate = validateDate(ENTRY_DATE);
+        this.ENTRY_DATE = validatedDate;
     }
 
     public String getFirstName() {
@@ -68,14 +59,8 @@ public class DisasterVictim {
         this.lastName = lastName;
     }
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
-        Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
-        Matcher myMatcher = dateOfBirth_pat.matcher(dateOfBirth);
-        if(myMatcher.find()) {
-            this.dateOfBirth = dateOfBirth;
-        }
-        else {
-            throw new IllegalArgumentException();
-        }
+        String validatedDate = validateDate(dateOfBirth);
+        this.dateOfBirth = validatedDate;
     }
     public void setComments(String comments) {
         this.comments = comments;
@@ -133,6 +118,17 @@ public class DisasterVictim {
         }
         else {
             this.medicalRecords.add(medicalRecord);
+        }
+    }
+
+    public String validateDate(String date) {
+        Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+        Matcher myMatcher = dateOfBirth_pat.matcher(date);
+        if(myMatcher.find()) {
+            return date;
+        }
+        else {
+            throw new IllegalArgumentException();
         }
     }
 }

@@ -37,12 +37,8 @@ public class ReliefService{
     }
 
     public void setDateOfInquiry(String dateOfInquiry) throws IllegalArgumentException{
-        if (dateOfInquiry.matches("\\d{4}-\\d{2}-\\d{2}")) {
-            this.dateOfInquiry = dateOfInquiry;//if date doesnt match this format, throw and IllegalArgumentException
-        }
-        else{
-            throw new IllegalArgumentException("Invalid date format: " + dateOfInquiry);
-        }
+        String validatedDate = validateDate(dateOfInquiry);
+        this.dateOfInquiry = validatedDate;
     }
 
 
@@ -87,5 +83,16 @@ public class ReliefService{
                "Date of Inquiry: " + dateOfInquiry +", "+ 
                "Info Provided: " + infoProvided +", "+
                "Last Known Location: " + lastKnownLocation.getName();
+    }
+
+    public String validateDate(String date) {
+        Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+        Matcher myMatcher = dateOfBirth_pat.matcher(date);
+        if(myMatcher.find()) {
+            return date;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 }

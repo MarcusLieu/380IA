@@ -1,20 +1,19 @@
 package edu.ucalgary.oop;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class MedicalRecord {
     private Location location; 
     private String treatmentDetails;
     private String dateOfTreatment; 
 
     public MedicalRecord(Location location, String treatmentDetails, String dateOfTreatment) throws IllegalArgumentException{
-        String regex = "\\d{4}-\\d{2}-\\d{2}";
-        if (!dateOfTreatment.matches(regex)) {
-            throw new IllegalArgumentException("Invalid date format. Expected format is YYYY-MM-DD.");
-        }
+        String validatedDate = validateDate(dateOfTreatment);
         this.location = location;
         this.treatmentDetails = new String(treatmentDetails);
-        this.dateOfTreatment = new String(dateOfTreatment);
+        this.dateOfTreatment = new String(validatedDate);
     }
-
      
     public Location getLocation() {
         return this.location;
@@ -39,10 +38,18 @@ public class MedicalRecord {
     }
 
     public void setDateOfTreatment(String dateOfTreatment) {
-        String regex = "\\d{4}-\\d{2}-\\d{2}";
-    if (!dateOfTreatment.matches(regex)) {
-        throw new IllegalArgumentException("Invalid date format. Expected format is YYYY-MM-DD.");
+        String validatedDate = validateDate(dateOfTreatment);
+        this.dateOfTreatment = validatedDate;
     }
-        this.dateOfTreatment = new String(dateOfTreatment);
+
+    public String validateDate(String date) {
+        Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
+        Matcher myMatcher = dateOfBirth_pat.matcher(date);
+        if(myMatcher.find()) {
+            return date;
+        }
+        else {
+            throw new IllegalArgumentException();
+        }
     }
 }
