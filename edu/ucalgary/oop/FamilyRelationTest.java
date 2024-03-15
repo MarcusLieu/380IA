@@ -38,5 +38,13 @@ public class FamilyRelationTest {
         assertEquals("setRelationshipTo should update the relationship", newRelationship, testFamilyRelationObject.getRelationshipTo());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testFamilyRelationDuplicateInfo() {
+        DisasterVictim person1 = new DisasterVictim("todd", "2024-01-20");
+        DisasterVictim person2 = new DisasterVictim("howard", "2024-02-20");
+        FamilyRelation p1p2 = new FamilyRelation(person1, "2024-03-20", person2);
+        FamilyRelation p2p1 = new FamilyRelation(person2, "2024-03-20", person1);
+    }
 
+   
 }
