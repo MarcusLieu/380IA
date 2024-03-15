@@ -338,8 +338,25 @@ public class DisasterVictimTest {
     } 
 
     @Test
-    public void 
+    public void testSetGetDietaryRestrictions() {
+       DisasterVictim dietVictim = new DisasterVictim("joe", "2024-01-20");
+       ArrayList<String> newDiets = new ArrayList<String>();
+       newDiets.add("MOML");
+       dietVictim.setDietaryRestrictions(newDiets);
+       assertEquals("setDietaryRestrictions should correctly set the field if the input is in the enum dietary restrictions class", newDiets, dietVictim.getDietaryRestrictions());
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testInvalidDietaryRestriction() {
+        DisasterVictim dietVictim2 = new DisasterVictim("bill", "2024-01-20");
+        ArrayList<String> newDiets = new ArrayList<String>();
+        newDiets.add("ABCD");
+        dietVictim2.setDietaryRestrictions(newDiets);
+    }
+
+
 }
+
 
 
 

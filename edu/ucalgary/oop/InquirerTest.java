@@ -83,5 +83,16 @@ testGetInfo:
         }
         assertTrue("Inquirer should inherit set last name from person", correct);
     }
+
+    @Test
+    public void testMultipleInteractions() {
+        Inquirer testInquirer2 = new Inquirer("joe", "doe", "+1-123-456-7891", "looking for bill");
+        DisasterVictim missingVictim = new DisasterVictim("adam", "2024-01-20");
+        ReliefService testReliefService = new ReliefService(testInquirer2, missingVictim, "2024-01-20", "john", null);
+        Location testLocation = new Location("test location", "1234 street");
+        InquirerLogs logs = new InquirerLogs(testInquirer2);
+        ReliefService testReliefService2 = new ReliefService(testInquirer2, null, expectedLastName, expectedFirstName, testLocation);
+        assertEquals("Inquirer making another relief services should increase log count", 2, logs.getLogHistory().size());
+    }
 }
 

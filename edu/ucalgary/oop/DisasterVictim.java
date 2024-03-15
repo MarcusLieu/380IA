@@ -47,6 +47,9 @@ public class DisasterVictim extends Person implements DateFormat{
     public String getGender() {
         return this.gender;
     }
+    public ArrayList<String> getDietaryRestrictions() {
+        return this.dietaryRestrictions;
+    }
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
         String validatedDate = validateDate(dateOfBirth);
         this.dateOfBirth = validatedDate;
@@ -69,6 +72,9 @@ public class DisasterVictim extends Person implements DateFormat{
         if (genderList.contains(gender)) {
             this.gender = gender;
         }
+    }
+    public void setDietaryRestrictions(ArrayList<String> diets) {
+        this.dietaryRestrictions = diets;
     }
     public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {
@@ -111,6 +117,9 @@ public class DisasterVictim extends Person implements DateFormat{
         else {
             this.medicalRecords.add(medicalRecord);
         }
+    }
+    public void addDietraryRestriction(String diet) {
+        this.dietaryRestrictions.add(diet);
     }
 
     public String validateDate(String date) {
