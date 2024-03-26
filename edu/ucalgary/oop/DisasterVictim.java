@@ -67,10 +67,14 @@ public class DisasterVictim extends Person implements DateFormat{
         this.familyConnections = familyConnections;
     }
     
-    public void setGender(String gender, GenderRetrieval genderFile) {
+    public void setGender(String gender, GenderRetrieval genderFile) throws IllegalArgumentException{
         ArrayList<String> genderList = genderFile.getGenderOptions();
+        gender = gender.toLowerCase();
         if (genderList.contains(gender)) {
             this.gender = gender;
+        }
+        else {
+            throw new IllegalArgumentException();
         }
     }
     public void setDietaryRestrictions(ArrayList<String> diets) {

@@ -314,15 +314,18 @@ public class DisasterVictimTest {
 
     @Test
     public void testSetAndGetGender() {
-        String newGender = "boy";
+        String newGender = "Boy";
         GenderRetrieval genderFile = new GenderRetrieval("edu/ucalgary/oop/GenderOptions.txt");
         victim.setGender(newGender, genderFile);
         assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
 
-    @Test(expected = IOException.class)
-    public void testGenderFileReading() {
-        GenderRetrieval genderFile = new GenderRetrieval("fileThatDoesntExist.txt");
+    @Test(expected = IllegalArgumentException.class)    
+    public void testInvalidGender() {
+        String newGender = "dragon";
+        GenderRetrieval genderFile = new GenderRetrieval("edu/ucalgary/oop/GenderOptions.txt");
+        victim.setGender(newGender, genderFile);
+        assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
 
     @Test

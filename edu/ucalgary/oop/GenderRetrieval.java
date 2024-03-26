@@ -9,24 +9,28 @@ public class GenderRetrieval {
 
     public GenderRetrieval(String fileName) {
         this.fileName = fileName;
-        this.genderOptions = new ArrayList<String>();
-        this.readFromFile(fileName);
+        ArrayList<String> genders = readFromFile(this.fileName);
+        this.setGenderOptions(genders);
     }
 
-    public void readFromFile(String fileName) {
-        try {
-            BufferedReader in = new BufferedReader(new FileReader(fileName));
+    public ArrayList<String> readFromFile(String path) {
+        ArrayList<String> linesRead = new ArrayList<String>();
+        try (BufferedReader in = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = in.readLine()) != null) {
-                this.genderOptions.add(line);
+                linesRead.add(line.trim().toLowerCase());
             }
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        } catch (IOException error) {
+            error.printStackTrace();
+        } 
+        return linesRead;
     }
+    
     public ArrayList<String> getGenderOptions() {
         return this.genderOptions;
     }
 
+    public void setGenderOptions(ArrayList<String> genderOptions) {
+        this.genderOptions = genderOptions;
+    }
 }
