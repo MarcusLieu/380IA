@@ -4,6 +4,18 @@ import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+enum DietaryRestrictions {
+    AVML,
+    DBML,
+    GFML,
+    KSML,
+    LSML,
+    MOML,
+    PFML,
+    VGML,
+    VJML
+}
+
 public class DisasterVictim extends Person implements DateFormat{
     private String comments;
     private int ASSIGNED_SOCIAL_ID;
@@ -47,12 +59,20 @@ public class DisasterVictim extends Person implements DateFormat{
     public String getGender() {
         return this.gender;
     }
+    public int getAge() {
+        return this.age;
+    }
+
     public ArrayList<String> getDietaryRestrictions() {
         return this.dietaryRestrictions;
     }
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
         String validatedDate = validateDate(dateOfBirth);
-        this.dateOfBirth = validatedDate;
+        if (this.age == 0) {
+            this.dateOfBirth = validatedDate;
+            return;
+        }
+        throw new IllegalArgumentException();
     }
     public void setComments(String comments) {
         this.comments = comments;
@@ -77,9 +97,15 @@ public class DisasterVictim extends Person implements DateFormat{
             throw new IllegalArgumentException();
         }
     }
-    public void setDietaryRestrictions(ArrayList<String> diets) {
-        this.dietaryRestrictions = diets;
+
+    public void setAge(int age) throws IllegalArgumentException{
+        if (age > 0 && this.dateOfBirth == null) {
+            this.age = age;
+            return;
+        }
+        throw new IllegalArgumentException();
     }
+
     public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {
             this.personalBelongings = new ArrayList<Supply>();
@@ -122,8 +148,24 @@ public class DisasterVictim extends Person implements DateFormat{
             this.medicalRecords.add(medicalRecord);
         }
     }
-    public void addDietraryRestriction(String diet) {
-        this.dietaryRestrictions.add(diet);
+    public void addDietraryRestriction(String diet) throws IllegalArgumentException {
+        for (DietaryRestrictions d : DietaryRestrictions.values()) {
+            String a = diet;
+            String b = d.toString();
+            if (a == b) {
+                if (this.dietaryRestrictions == null) {
+                    this.dietaryRestrictions = new ArrayList<String>();
+                }
+                this.dietaryRestrictions.add(diet.toUpperCase());
+                return;
+            }
+        }
+        throw new IllegalArgumentException();
+    }
+    public void removeDietaryRestriction(String diet) {
+        if (this.dietaryRestrictions != null) {
+            this.dietaryRestrictions.remove(diet);
+        }
     }
 
     public String validateDate(String date) {

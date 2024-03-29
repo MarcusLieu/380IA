@@ -328,36 +328,33 @@ public class DisasterVictimTest {
         assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
 
-    @Test
-    public void testAgeVsBirthdate() {
+    @Test(expected = IllegalArgumentException.class)
+    public void testAgethenBirthdate() {
+        DisasterVictim testVictim1 = new DisasterVictim("bill", "2024-01-20");
+        testVictim1.setAge(19);
+        testVictim1.setDateOfBirth("1987-05-21");
+    } 
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testBirthDatethenAge() {
         DisasterVictim testVictim1 = new DisasterVictim("bill", "2024-01-20");
         testVictim1.setDateOfBirth("1987-05-21");
         testVictim1.setAge(19);
-        boolean correct = true;
-        if (testVictim1.getDateOfBirth() == "1987-05-21" && testVictim1.getAge() == 19) {
-            correct = false;
-        }
-        assertTrue("Should not be possible to set both date of birth and age as only 1 is allowed", correct);
     } 
 
     @Test
-    public void testSetGetDietaryRestrictions() {
+    public void testAddDietaryRestriction() {
        DisasterVictim dietVictim = new DisasterVictim("joe", "2024-01-20");
-       ArrayList<String> newDiets = new ArrayList<String>();
-       newDiets.add("MOML");
-       dietVictim.setDietaryRestrictions(newDiets);
-       assertEquals("setDietaryRestrictions should correctly set the field if the input is in the enum dietary restrictions class", newDiets, dietVictim.getDietaryRestrictions());
+       dietVictim.addDietraryRestriction("MOML");
+       dietVictim.addDietraryRestriction("VGML");
+       assertEquals("setDietaryRestrictions should correctly set the field if the input is in the enum dietary restrictions class", 2, dietVictim.getDietaryRestrictions().size());
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidDietaryRestriction() {
         DisasterVictim dietVictim2 = new DisasterVictim("bill", "2024-01-20");
-        ArrayList<String> newDiets = new ArrayList<String>();
-        newDiets.add("ABCD");
-        dietVictim2.setDietaryRestrictions(newDiets);
+        dietVictim2.addDietraryRestriction("ABCD");;
     }
-
-
 }
 
 
