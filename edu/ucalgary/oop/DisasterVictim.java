@@ -125,13 +125,47 @@ public class DisasterVictim extends Person implements DateFormat{
             this.personalBelongings.remove(supply);
         }
     }
-    public void addFamilyConnection(FamilyRelation familyConnection) {
-        if (this.familyConnections == null) {
-            this.familyConnections = new ArrayList<FamilyRelation>();
-            this.familyConnections.add(familyConnection);
+    public void addFamilyConnection(FamilyRelation familyConnection) throws IllegalArgumentException {
+        if (familyConnection.getPersonOne().getFamilyConnections() == null && familyConnection.getPersonTwo().getFamilyConnections() == null) {
+            if (this.familyConnections == null) {
+                this.familyConnections = new ArrayList<FamilyRelation>();
+                this.familyConnections.add(familyConnection);
+                return;
+            }
+            else {
+                this.familyConnections.add(familyConnection);
+                return;
+            }
+        }
+        if (familyConnection.getPersonOne().getFamilyConnections() != null) {
+            for (int i = 0; i < familyConnection.getPersonOne().getFamilyConnections().size(); i++) {
+                if (familyConnection.getPersonOne().getFamilyConnections().get(i).getPersonOne() != familyConnection.getPersonTwo() && familyConnection.getPersonOne().getFamilyConnections().get(i).getPersonTwo() != familyConnection.getPersonTwo() ) {
+                    if (this.familyConnections == null) {
+                        this.familyConnections = new ArrayList<FamilyRelation>();
+                        this.familyConnections.add(familyConnection);
+                    }
+                    else {
+                        this.familyConnections.add(familyConnection);
+                    }
+                    return;
+                }
+            }
+            throw new IllegalArgumentException();
         }
         else {
-            this.familyConnections.add(familyConnection);
+            for (int i = 0; i < familyConnection.getPersonTwo().getFamilyConnections().size(); i++) {
+                if (familyConnection.getPersonTwo().getFamilyConnections().get(i).getPersonOne() != familyConnection.getPersonOne() && familyConnection.getPersonTwo().getFamilyConnections().get(i).getPersonTwo() != familyConnection.getPersonOne()) {
+                    if (this.familyConnections == null) {
+                        this.familyConnections = new ArrayList<FamilyRelation>();
+                        this.familyConnections.add(familyConnection);
+                    }
+                    else {
+                        this.familyConnections.add(familyConnection);
+                    }
+                    return;
+                }
+            }
+            throw new IllegalArgumentException();
         }
     }
     public void removeFamilyConnection(FamilyRelation familyConnection) {
