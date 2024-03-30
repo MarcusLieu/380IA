@@ -127,16 +127,38 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     public void addFamilyConnection(FamilyRelation familyConnection) throws IllegalArgumentException {
         if (familyConnection.getPersonOne().getFamilyConnections() == null && familyConnection.getPersonTwo().getFamilyConnections() == null) {
+
             if (this.familyConnections == null) {
                 this.familyConnections = new ArrayList<FamilyRelation>();
                 this.familyConnections.add(familyConnection);
-                return;
             }
             else {
                 this.familyConnections.add(familyConnection);
-                return;
             }
+
+            if (this == familyConnection.getPersonOne()) {
+                if (familyConnection.getPersonTwo().getFamilyConnections() == null) {
+                    ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                    familyConnection.getPersonTwo().setFamilyConnections(newRelation);
+                    familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                }
+                else {
+                    familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                }
+            }
+            else {
+                if (familyConnection.getPersonOne().getFamilyConnections() == null) {
+                    ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                    familyConnection.getPersonOne().setFamilyConnections(newRelation);
+                    familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                }
+                else {
+                    familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                }
+            }
+            return;
         }
+
         if (familyConnection.getPersonOne().getFamilyConnections() != null) {
             for (int i = 0; i < familyConnection.getPersonOne().getFamilyConnections().size(); i++) {
                 if (familyConnection.getPersonOne().getFamilyConnections().get(i).getPersonOne() != familyConnection.getPersonTwo() && familyConnection.getPersonOne().getFamilyConnections().get(i).getPersonTwo() != familyConnection.getPersonTwo() ) {
@@ -146,6 +168,27 @@ public class DisasterVictim extends Person implements DateFormat{
                     }
                     else {
                         this.familyConnections.add(familyConnection);
+                    }
+        
+                    if (this == familyConnection.getPersonOne()) {
+                        if (familyConnection.getPersonTwo().getFamilyConnections() == null) {
+                            ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                            familyConnection.getPersonTwo().setFamilyConnections(newRelation);
+                            familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                        }
+                        else {
+                            familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                        }
+                    }
+                    else {
+                        if (familyConnection.getPersonOne().getFamilyConnections() == null) {
+                            ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                            familyConnection.getPersonOne().setFamilyConnections(newRelation);
+                            familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                        }
+                        else {
+                            familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                        }
                     }
                     return;
                 }
@@ -162,6 +205,27 @@ public class DisasterVictim extends Person implements DateFormat{
                     else {
                         this.familyConnections.add(familyConnection);
                     }
+        
+                    if (this == familyConnection.getPersonOne()) {
+                        if (familyConnection.getPersonTwo().getFamilyConnections() == null) {
+                            ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                            familyConnection.getPersonTwo().setFamilyConnections(newRelation);
+                            familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                        }
+                        else {
+                            familyConnection.getPersonTwo().getFamilyConnections().add(familyConnection);
+                        }
+                    }
+                    else {
+                        if (familyConnection.getPersonOne().getFamilyConnections() == null) {
+                            ArrayList<FamilyRelation> newRelation = new ArrayList<FamilyRelation>();
+                            familyConnection.getPersonOne().setFamilyConnections(newRelation);
+                            familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                        }
+                        else {
+                            familyConnection.getPersonOne().getFamilyConnections().add(familyConnection);
+                        }
+                    }
                     return;
                 }
             }
@@ -170,7 +234,14 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     public void removeFamilyConnection(FamilyRelation familyConnection) {
         if (this.familyConnections != null) {
-            this.familyConnections.remove(familyConnection);
+            if (this == familyConnection.getPersonOne()) {
+                this.familyConnections.remove(familyConnection);
+                familyConnection.getPersonTwo().getFamilyConnections().remove(familyConnection);
+            }
+            else {
+                this.familyConnections.remove(familyConnection);
+                familyConnection.getPersonOne().getFamilyConnections().remove(familyConnection);
+            }
         }
     }
     public void addMedicalRecord(MedicalRecord medicalRecord) {
