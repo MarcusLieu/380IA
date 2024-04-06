@@ -314,8 +314,8 @@ public class DisasterVictimTest {
 
     @Test
     public void testSetAndGetGender() {
-        String newGender = "Boy";
         GenderRetrieval genderFile = new GenderRetrieval("edu/ucalgary/oop/GenderOptions.txt");
+        String newGender = genderFile.getGenderOptions().get(0);
         victim.setGender(newGender, genderFile);
         assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
