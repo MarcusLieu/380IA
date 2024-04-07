@@ -3,19 +3,19 @@ import java.util.ArrayList;
 
 public class InquirerLogs {
     private Inquirer inquirer;
-    private ArrayList<String> logHistory;
+    private ArrayList<ReliefService> logHistory;
 
     public InquirerLogs(Inquirer inquirer) {
         this.inquirer = inquirer;
-        this.logHistory = new ArrayList<String>();
+        this.logHistory = new ArrayList<ReliefService>();
     }
     public Inquirer getInquirer() {
         return this.inquirer;
     }
-    public ArrayList<String> getLogHistory() {
+    public ArrayList<ReliefService> getLogHistory() {
         return this.logHistory;
     }
-    public void AddLog(String log) {
+    public void AddLog(ReliefService log) {
         this.logHistory.add(log);
     }
 

@@ -10,7 +10,6 @@ public class ReliefService implements DateFormat{
     private String infoProvided;
     private Location lastKnownLocation;
     
-    //constructor
     public ReliefService( Inquirer inquirer, DisasterVictim missingPerson, String dateOfInquiry, 
     String infoProvided, Location lastKnownLocation){
         this.inquirer = inquirer;
@@ -18,8 +17,8 @@ public class ReliefService implements DateFormat{
         this.dateOfInquiry = dateOfInquiry;
         this.infoProvided = infoProvided;
         this.lastKnownLocation = lastKnownLocation;
+        inquirer.addLog(this);
     }
-    //setters
     public void setInquirer( Inquirer inquirer){
         this.inquirer = inquirer;
     }
