@@ -28,7 +28,7 @@ public class DisasterVictim extends Person implements DateFormat{
     private ArrayList<String> dietaryRestrictions;
 
     public DisasterVictim(String firstName, String ENTRY_DATE) throws IllegalArgumentException{
-        this.firstName = firstName;
+        this.firstName = firstName.trim();
         this.ASSIGNED_SOCIAL_ID = counter;
         counter++;
         String validatedDate = validateDate(ENTRY_DATE);
