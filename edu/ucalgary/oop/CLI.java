@@ -44,32 +44,35 @@ public class CLI {
                     System.out.println("4.) siteD");
                     System.out.print("Select the location you would like to see occupants from:  ");
                     int choice2 = scanner.nextInt();
-                    if (choice2 == 1) {
-                        for (int i = 0; i < siteA.getOccupants().size(); i++) {
-                            System.out.println("--------------------------------------------------");
-                            System.out.println(siteA.getOccupants().get(i).getFirstName());
-                            System.out.println(siteA.getOccupants().get(i).getEntryDate());
+
+                    for (int i = 0; i < sites.get(choice2 - 1).getOccupants().size(); i++) {
+                        System.out.println("--------------------------------------------------");
+                        System.out.print("First name: ");
+                        System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getFirstName());
+                        System.out.print("Entry date: ");
+                        System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getEntryDate());
+                        if (sites.get(choice2 - 1).getOccupants().get(i).getMedicalRecords() == null) {
+                            System.out.println("No medical records recorded");
                         }
-                    }
-                    else if (choice2 == 2) {
-                        for (int i = 0; i < siteB.getOccupants().size(); i++) {
-                            System.out.println("--------------------------------------------------");
-                            System.out.println(siteB.getOccupants().get(i).getFirstName());
-                            System.out.println(siteB.getOccupants().get(i).getEntryDate());
+                        else {
+                            System.out.print("Treatment details: ");
+                            System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getMedicalRecords().get(0).getTreatmentDetails());
+                            System.out.print("Treatment date: ");
+                            System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getMedicalRecords().get(0).getDateOfTreatment());
                         }
-                    }
-                    else if (choice2 == 3) {
-                        for (int i = 0; i < siteC.getOccupants().size(); i++) {
-                            System.out.println("--------------------------------------------------");
-                            System.out.println(siteC.getOccupants().get(i).getFirstName());
-                            System.out.println(siteC.getOccupants().get(i).getEntryDate());
+                        if (sites.get(choice2 - 1).getOccupants().get(i).getFamilyConnections() == null) {
+                            System.out.println("No relations recorded");
                         }
-                    }
-                    else if (choice2 == 4) {
-                        for (int i = 0; i < siteD.getOccupants().size(); i++) {
-                            System.out.println("--------------------------------------------------");
-                            System.out.println(siteD.getOccupants().get(i).getFirstName());
-                            System.out.println(siteD.getOccupants().get(i).getEntryDate());
+                        else {
+                            System.out.print("Related victim first name: ");
+                            if (sites.get(choice2 - 1).getOccupants().get(i) == sites.get(choice2 - 1).getOccupants().get(i).getFamilyConnections().get(0).getPersonOne()) {
+                                System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getFamilyConnections().get(0).getPersonTwo().getFirstName());
+                            }
+                            else {
+                                System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getFamilyConnections().get(0).getPersonOne().getFirstName());
+                            }
+                            System.out.print("Relation description: ");
+                            System.out.println(sites.get(choice2 - 1).getOccupants().get(i).getFamilyConnections().get(0).getRelationshipTo());
                         }
                     }
                 }
