@@ -8,7 +8,8 @@ public abstract class Person {
 
     
     /** 
-     * @return String
+     * gets firstName field
+     * @return first name as String
      */
     public String getFirstName() {
         return this.firstName;
@@ -16,7 +17,8 @@ public abstract class Person {
 
     
     /** 
-     * @return String
+     * gets lastName field
+     * @return last name as String
      */
     public String getLastName() {
         return this.lastName;
@@ -25,7 +27,8 @@ public abstract class Person {
 
     
     /** 
-     * @param firstName
+     * sets firstName field
+     * @param firstName as String
      */
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -33,7 +36,8 @@ public abstract class Person {
 
     
     /** 
-     * @param lastName
+     * sets lastName field
+     * @param lastName as String
      */
     public void setLastName(String lastName) {
         this.lastName = lastName;

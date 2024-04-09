@@ -16,7 +16,7 @@ public class GenderRetrieval {
     
     /** 
      * @param path
-     * @return ArrayList<String>
+     * @return array list of genders read from file
      */
     public ArrayList<String> readFromFile(String path) {
         ArrayList<String> linesRead = new ArrayList<String>();
@@ -33,7 +33,7 @@ public class GenderRetrieval {
     
     
     /** 
-     * @return ArrayList<String>
+     * @return array list of gender strings
      */
     public ArrayList<String> getGenderOptions() {
         return this.genderOptions;
@@ -41,7 +41,8 @@ public class GenderRetrieval {
 
     
     /** 
-     * @param genderOptions
+     * set gender options field
+     * @param genderOptions an array list of strings
      */
     public void setGenderOptions(ArrayList<String> genderOptions) {
         this.genderOptions = genderOptions;

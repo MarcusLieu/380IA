@@ -17,28 +17,32 @@ public class Inquirer extends Person{
     }
     
     /** 
-     * @return String
+     * gets info field
+     * @return info as String
      */
     public String getInfo(){
         return info;
     }
     
     /** 
-     * @return String
+     * gets ServicesPhoneNum field
+     * @return ServicesPhoneNum as String
      */
     public String getServicesPhoneNum(){
         return ServicesPhoneNum;
     }
     
     /** 
-     * @return ArrayList<ReliefService>
+     * gets logHistory field
+     * @return log history as array list
      */
     public ArrayList<ReliefService> getLogHistory() {
         return this.logHistory;
     }
     
     /** 
-     * @param log
+     * adds element to loghistory field
+     * @param log a relief service object
      */
     public void addLog(ReliefService log) {
         this.logHistory.add(log);

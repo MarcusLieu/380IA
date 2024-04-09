@@ -17,7 +17,8 @@ public class MedicalRecord implements DateFormat{
      
     
     /** 
-     * @return Location
+     * gets location field
+     * @return location as Location object
      */
     public Location getLocation() {
         return this.location;
@@ -25,7 +26,8 @@ public class MedicalRecord implements DateFormat{
 
     
     /** 
-     * @param location
+     * sets location field
+     * @param location as Location
      */
     public void setLocation(Location location) {
         this.location = location;
@@ -34,7 +36,8 @@ public class MedicalRecord implements DateFormat{
     
     
     /** 
-     * @return String
+     * gets TreatmentDetails field
+     * @return treatment details as String
      */
     public String getTreatmentDetails() {
         return this.treatmentDetails;
@@ -42,7 +45,8 @@ public class MedicalRecord implements DateFormat{
 
     
     /** 
-     * @param treatmentDetails
+     * sets TreatmentDetails field
+     * @param treatmentDetails as string
      */
     public void setTreatmentDetails(String treatmentDetails) {
         this.treatmentDetails = new String(treatmentDetails);
@@ -51,7 +55,8 @@ public class MedicalRecord implements DateFormat{
    
     
     /** 
-     * @return String
+     * gets DateOfTreatment field
+     * @return date of treatment as String
      */
     public String getDateOfTreatment() {
         return this.dateOfTreatment;
@@ -59,7 +64,8 @@ public class MedicalRecord implements DateFormat{
 
     
     /** 
-     * @param dateOfTreatment
+     * sets DateOfTreatment field
+     * @param dateOfTreatment as String
      */
     public void setDateOfTreatment(String dateOfTreatment) {
         String validatedDate = validateDate(dateOfTreatment);
@@ -68,8 +74,8 @@ public class MedicalRecord implements DateFormat{
 
     
     /** 
-     * @param date
-     * @return String
+     * @param date as String
+     * @return date as String
      */
     public String validateDate(String date) {
         Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");

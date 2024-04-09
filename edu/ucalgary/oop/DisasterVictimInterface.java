@@ -10,7 +10,8 @@ import java.util.Scanner;
 public class DisasterVictimInterface {
     
     /** 
-     * @param args
+     * disaster victim interface to add them to designated locations
+     * @param args command line arguments
      */
     public static void main(String[] args) {
         Location siteA = new Location("siteA", "123 street NE");

@@ -21,7 +21,8 @@ public class ReliefService implements DateFormat{
     }
     
     /** 
-     * @param inquirer
+     * set inquirer field
+     * @param inquirer as Inquirer object
      */
     public void setInquirer( Inquirer inquirer){
         this.inquirer = inquirer;
@@ -29,7 +30,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @param missingPerson
+     * set missingPerson field
+     * @param missingPerson as DisasterVictim object
      */
     public void setMissingPerson( DisasterVictim missingPerson){
         this.missingPerson = missingPerson;
@@ -37,8 +39,9 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @param dateOfInquiry
-     * @throws IllegalArgumentException
+     * sets dateOfInquiry field only if it follows valid format xxxx-xx-xx where x is a number
+     * @param dateOfInquiry as String
+     * @throws IllegalArgumentException if date entered does not follow xxxx-xx-xx
      */
     public void setDateOfInquiry(String dateOfInquiry) throws IllegalArgumentException{
         String validatedDate = validateDate(dateOfInquiry);
@@ -48,7 +51,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @param infoProvided
+     * sets infoProvided field
+     * @param infoProvided as String
      */
     public void setInfoProvided( String infoProvided){
         this.infoProvided = infoProvided;
@@ -56,7 +60,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @param lastKnownLocation
+     * sets lastKnownLocation field
+     * @param lastKnownLocation as Location obeject
      */
     public void setLastKnownLocation(Location lastKnownLocation){
         this.lastKnownLocation = lastKnownLocation;
@@ -64,16 +69,17 @@ public class ReliefService implements DateFormat{
     
     
     /** 
-     * @return Inquirer
+     * gets Inquirer field
+     * @return inquirer as Inquirer object
      */
-    //getters
     public Inquirer getInquirer(){
         return inquirer;
     }
 
     
     /** 
-     * @return DisasterVictim
+     * gets missingPerson field
+     * @return missing person as DisasterVictim 
      */
     public DisasterVictim getMissingPerson(){
         return missingPerson;
@@ -81,7 +87,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @return String
+     * gets dateOfInquiry field
+     * @return date of inquiry as String
      */
     public String getDateOfInquiry(){
         return dateOfInquiry;
@@ -89,7 +96,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @return String
+     * gets infoProvided field
+     * @return info provided as String
      */
     public String getInfoProvided(){
         return infoProvided;
@@ -97,7 +105,8 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @return Location
+     * gets lastKnownLocation field
+     * @return last known location as Location object
      */
     public Location getLastKnownLocation(){
         return lastKnownLocation;
@@ -105,6 +114,7 @@ public class ReliefService implements DateFormat{
 
     
     /** 
+     * prints log details which is a combination of all the fields
      * @return String
      */
     public String getLogDetails(){
@@ -123,8 +133,9 @@ public class ReliefService implements DateFormat{
 
     
     /** 
-     * @param date
-     * @return String
+     * checks if date follows format xxxx-xx-xx where x is a number
+     * @param date as String
+     * @return date as String 
      */
     public String validateDate(String date) {
         Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");

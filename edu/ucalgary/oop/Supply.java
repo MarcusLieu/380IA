@@ -11,9 +11,9 @@ public class Supply {
         this.type = new String(type); 
     }
     
-    
     /** 
-     * @return String
+     * gets type field
+     * @return type as String
      */
     public String getType(){
         return this.type; 
@@ -21,7 +21,8 @@ public class Supply {
 
     
     /** 
-     * @param type
+     * sets type field
+     * @param type as String
      */
     public void setType(String type){
         this.type = new String(type);
@@ -29,7 +30,8 @@ public class Supply {
 
     
     /** 
-     * @return int
+     * gets quantity field
+     * @return quantity as int
      */
     public int getQuantity(){
         return this.quantity; 
@@ -37,7 +39,8 @@ public class Supply {
 
     
     /** 
-     * @param quantity
+     * sets quantity field
+     * @param quantity as int
      */
     public void setQuantity(int quantity){
         this.quantity = quantity;

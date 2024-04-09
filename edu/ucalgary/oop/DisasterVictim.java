@@ -37,63 +37,72 @@ public class DisasterVictim extends Person implements DateFormat{
 
     
     /** 
-     * @return String
+     * gets the date of birth of a disaster victim
+     * @return birth date as String
      */
     public String getDateOfBirth() {
         return this.dateOfBirth;
     }
     
     /** 
-     * @return String
+     * gets the comments of a disaster victim
+     * @return comments as String
      */
     public String getComments() {
         return this.comments;
     }
     
     /** 
-     * @return ArrayList<MedicalRecord>
+     * gets the list of medical records of a disaster victim
+     * @return medical records as array list
      */
     public ArrayList<MedicalRecord> getMedicalRecords() {
         return this.medicalRecords;
     }
     
     /** 
-     * @return String
+     * gets the entry date of a disaster victim
+     * @return entry date as String
      */
     public String getEntryDate() {
         return this.ENTRY_DATE;
     }
     
     /** 
-     * @return int
+     * gets the unique id of a disaster victim
+     * @return assigned social id as int
      */
     public int getAssignedSocialID() {
         return this.ASSIGNED_SOCIAL_ID;
     }
     
     /** 
-     * @return ArrayList<Supply>
+     * gets the list of personal belongings of a disaster victim
+     * @return personal belongings as array list
      */
     public ArrayList<Supply> getPersonalBelongings() {
         return this.personalBelongings;
     }
     
     /** 
-     * @return ArrayList<FamilyRelation>
+     * gets the list of family relations of a disaster victim
+     * @return family connectuons as array list
      */
     public ArrayList<FamilyRelation> getFamilyConnections() {
         return this.familyConnections;
     }
     
     /** 
-     * @return String
+     * gets the gender of a disaster victim
+     * @return gender as String
      */
     public String getGender() {
         return this.gender;
     }
     
     /** 
-     * @return int
+     * gets the age of a disaster victim
+     * @return age as int
      */
     public int getAge() {
         return this.age;
@@ -101,15 +110,17 @@ public class DisasterVictim extends Person implements DateFormat{
 
     
     /** 
-     * @return ArrayList<String>
+     * gets the list of dietary restrictions of a disaster victim
+     * @return dietary restrictions as array list
      */
     public ArrayList<String> getDietaryRestrictions() {
         return this.dietaryRestrictions;
     }
     
     /** 
-     * @param dateOfBirth
-     * @throws IllegalArgumentException
+     * validates if a date of birth follows the format xxxx-xx-xx where x is a number and sets it only if age is not already set
+     * @param dateOfBirth a string 
+     * @throws IllegalArgumentException is thrown if date does not follow specified format
      */
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
         String validatedDate = validateDate(dateOfBirth);
@@ -121,28 +132,32 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param comments
+     * sets comment field of disaster victim
+     * @param comments a string
      */
     public void setComments(String comments) {
         this.comments = comments;
     }
     
     /** 
-     * @param medicalRecords
+     * sets the medicalRecord field of a disaster victim
+     * @param medicalRecords an arraylist of medical records
      */
     public void setMedicalRecords(ArrayList<MedicalRecord> medicalRecords) {
         this.medicalRecords = medicalRecords;
     }
     
     /** 
-     * @param supplies
+     * sets the supplies field of a disaster victim
+     * @param supplies an arraylist of supplies
      */
     public void setPersonalBelongings(ArrayList<Supply> supplies) {
         this.personalBelongings = supplies;
     }
     
     /** 
-     * @param familyConnections
+     * sets the familyConnections field of a disaster victim
+     * @param familyConnections an arraylist of familyConnections
      */
     public void setFamilyConnections(ArrayList<FamilyRelation> familyConnections) {
         this.familyConnections = familyConnections;
@@ -150,9 +165,10 @@ public class DisasterVictim extends Person implements DateFormat{
     
     
     /** 
-     * @param gender
-     * @param genderFile
-     * @throws IllegalArgumentException
+     * reads from a text file and checks if the gender attempting to be set matches one in the file
+     * @param gender a string
+     * @param genderFile a GenderRetrieval object
+     * @throws IllegalArgumentException if gender string is not the same as any of the available genders in the file being read
      */
     public void setGender(String gender, GenderRetrieval genderFile) throws IllegalArgumentException{
         ArrayList<String> genderList = genderFile.getGenderOptions();
@@ -167,6 +183,7 @@ public class DisasterVictim extends Person implements DateFormat{
 
     
     /** 
+     * sets the age field of a disaster victim only if their birthdate is not already set
      * @param age
      * @throws IllegalArgumentException
      */
@@ -180,8 +197,9 @@ public class DisasterVictim extends Person implements DateFormat{
 
     
     /** 
-     * @param supply
-     * @param location
+     * adds an element to personal belongings arraylist of disaster victim only if it is available at the location specified
+     * @param supply a supply object
+     * @param location a location object
      */
     public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {
@@ -199,6 +217,7 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
+     * removes an element from personal belongings arraylist of a disaster victim only if its personal belongings is not already empty
      * @param supply
      */
     public void removePersonalBelonging(Supply supply) {
@@ -208,8 +227,9 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param familyConnection
-     * @throws IllegalArgumentException
+     * adds an element to familyConnections of a disaster victim only if the disaster victim being linked to already exists, and does not already have a pre-existing relationship with the current disaster victim
+     * @param familyConnection a familyConnection object
+     * @throws IllegalArgumentException is thrown if disaster victim being linked to does not exist, or if relationship already exists between the 2
      */
     public void addFamilyConnection(FamilyRelation familyConnection) throws IllegalArgumentException {
         if (familyConnection.getPersonOne().getFamilyConnections() == null && familyConnection.getPersonTwo().getFamilyConnections() == null) {
@@ -320,7 +340,8 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param familyConnection
+     * removes element from familyConnections of disastser victim only if their familyConnections is not already empty, also works two ways so the other disaster victim being linked to also has their relationship removed
+     * @param familyConnection a familyConnection object
      */
     public void removeFamilyConnection(FamilyRelation familyConnection) {
         if (this.familyConnections != null) {
@@ -336,7 +357,8 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param medicalRecord
+     * adds an element to medicalRecord arraylist of disaster victim
+     * @param medicalRecord a medicalRecord object
      */
     public void addMedicalRecord(MedicalRecord medicalRecord) {
         if (this.medicalRecords == null)  {
@@ -349,8 +371,9 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param diet
-     * @throws IllegalArgumentException
+     * adds an element to DietaryRestriction arraylist of disaster victim only if the value being added matches a value in the enumerate
+     * @param diet a String
+     * @throws IllegalArgumentException thrown if diet being added is not in enumeration
      */
     public void addDietraryRestriction(String diet) throws IllegalArgumentException {
         for (DietaryRestrictions d : DietaryRestrictions.values()) {
@@ -368,7 +391,8 @@ public class DisasterVictim extends Person implements DateFormat{
     }
     
     /** 
-     * @param diet
+     * removes element from DietaryRestriction arraylist of disaster victim only if the arraylist is not already empty
+     * @param diet a String
      */
     public void removeDietaryRestriction(String diet) {
         if (this.dietaryRestrictions != null) {
@@ -378,8 +402,9 @@ public class DisasterVictim extends Person implements DateFormat{
 
     
     /** 
-     * @param date
-     * @return String
+     * checks if entered date follows format xxxx-xx-xx where x is a number
+     * @param date a String
+     * @return validated date as String 
      */
     public String validateDate(String date) {
         Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");

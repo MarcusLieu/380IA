@@ -40,6 +40,7 @@ public class InquirerInterface {
     }
     
     /** 
+     * connects to ensf380project msqyl databasse and allows user to add inquirers and inquiry log into tables, and search disastser victims to link
      * @param args
      */
     public static void main(String[] args) {
@@ -225,5 +226,6 @@ public class InquirerInterface {
                 scanner.nextLine();
             }
         }
+        scanner.close();
     }
 }
