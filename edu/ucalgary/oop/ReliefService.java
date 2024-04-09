@@ -19,49 +19,94 @@ public class ReliefService implements DateFormat{
         this.lastKnownLocation = lastKnownLocation;
         inquirer.addLog(this);
     }
+    
+    /** 
+     * @param inquirer
+     */
     public void setInquirer( Inquirer inquirer){
         this.inquirer = inquirer;
     }
 
+    
+    /** 
+     * @param missingPerson
+     */
     public void setMissingPerson( DisasterVictim missingPerson){
         this.missingPerson = missingPerson;
     }
 
+    
+    /** 
+     * @param dateOfInquiry
+     * @throws IllegalArgumentException
+     */
     public void setDateOfInquiry(String dateOfInquiry) throws IllegalArgumentException{
         String validatedDate = validateDate(dateOfInquiry);
         this.dateOfInquiry = validatedDate;
     }
 
 
+    
+    /** 
+     * @param infoProvided
+     */
     public void setInfoProvided( String infoProvided){
         this.infoProvided = infoProvided;
     }
 
+    
+    /** 
+     * @param lastKnownLocation
+     */
     public void setLastKnownLocation(Location lastKnownLocation){
         this.lastKnownLocation = lastKnownLocation;
     }
     
+    
+    /** 
+     * @return Inquirer
+     */
     //getters
     public Inquirer getInquirer(){
         return inquirer;
     }
 
+    
+    /** 
+     * @return DisasterVictim
+     */
     public DisasterVictim getMissingPerson(){
         return missingPerson;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getDateOfInquiry(){
         return dateOfInquiry;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getInfoProvided(){
         return infoProvided;
     }
 
+    
+    /** 
+     * @return Location
+     */
     public Location getLastKnownLocation(){
         return lastKnownLocation;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getLogDetails(){
         Inquirer inquirer = getInquirer();
         DisasterVictim missingPerson = getMissingPerson();
@@ -76,6 +121,11 @@ public class ReliefService implements DateFormat{
                "Last Known Location: " + lastKnownLocation.getName();
     }
 
+    
+    /** 
+     * @param date
+     * @return String
+     */
     public String validateDate(String date) {
         Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
         Matcher myMatcher = dateOfBirth_pat.matcher(date);

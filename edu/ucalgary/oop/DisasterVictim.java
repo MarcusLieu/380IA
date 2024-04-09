@@ -35,37 +35,82 @@ public class DisasterVictim extends Person implements DateFormat{
         this.ENTRY_DATE = validatedDate;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getDateOfBirth() {
         return this.dateOfBirth;
     }
+    
+    /** 
+     * @return String
+     */
     public String getComments() {
         return this.comments;
     }
+    
+    /** 
+     * @return ArrayList<MedicalRecord>
+     */
     public ArrayList<MedicalRecord> getMedicalRecords() {
         return this.medicalRecords;
     }
+    
+    /** 
+     * @return String
+     */
     public String getEntryDate() {
         return this.ENTRY_DATE;
     }
+    
+    /** 
+     * @return int
+     */
     public int getAssignedSocialID() {
         return this.ASSIGNED_SOCIAL_ID;
     }
+    
+    /** 
+     * @return ArrayList<Supply>
+     */
     public ArrayList<Supply> getPersonalBelongings() {
         return this.personalBelongings;
     }
+    
+    /** 
+     * @return ArrayList<FamilyRelation>
+     */
     public ArrayList<FamilyRelation> getFamilyConnections() {
         return this.familyConnections;
     }
+    
+    /** 
+     * @return String
+     */
     public String getGender() {
         return this.gender;
     }
+    
+    /** 
+     * @return int
+     */
     public int getAge() {
         return this.age;
     }
 
+    
+    /** 
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getDietaryRestrictions() {
         return this.dietaryRestrictions;
     }
+    
+    /** 
+     * @param dateOfBirth
+     * @throws IllegalArgumentException
+     */
     public void setDateOfBirth(String dateOfBirth) throws IllegalArgumentException {
         String validatedDate = validateDate(dateOfBirth);
         if (this.age == 0) {
@@ -74,19 +119,41 @@ public class DisasterVictim extends Person implements DateFormat{
         }
         throw new IllegalArgumentException();
     }
+    
+    /** 
+     * @param comments
+     */
     public void setComments(String comments) {
         this.comments = comments;
     }
+    
+    /** 
+     * @param medicalRecords
+     */
     public void setMedicalRecords(ArrayList<MedicalRecord> medicalRecords) {
         this.medicalRecords = medicalRecords;
     }
+    
+    /** 
+     * @param supplies
+     */
     public void setPersonalBelongings(ArrayList<Supply> supplies) {
         this.personalBelongings = supplies;
     }
+    
+    /** 
+     * @param familyConnections
+     */
     public void setFamilyConnections(ArrayList<FamilyRelation> familyConnections) {
         this.familyConnections = familyConnections;
     }
     
+    
+    /** 
+     * @param gender
+     * @param genderFile
+     * @throws IllegalArgumentException
+     */
     public void setGender(String gender, GenderRetrieval genderFile) throws IllegalArgumentException{
         ArrayList<String> genderList = genderFile.getGenderOptions();
         gender = gender.toLowerCase();
@@ -98,6 +165,11 @@ public class DisasterVictim extends Person implements DateFormat{
         }
     }
 
+    
+    /** 
+     * @param age
+     * @throws IllegalArgumentException
+     */
     public void setAge(int age) throws IllegalArgumentException{
         if (age > 0 && this.dateOfBirth == null) {
             this.age = age;
@@ -106,6 +178,11 @@ public class DisasterVictim extends Person implements DateFormat{
         throw new IllegalArgumentException();
     }
 
+    
+    /** 
+     * @param supply
+     * @param location
+     */
     public void addPersonalBelonging(Supply supply, Location location) {
         if (this.personalBelongings == null) {
             this.personalBelongings = new ArrayList<Supply>();
@@ -120,11 +197,20 @@ public class DisasterVictim extends Person implements DateFormat{
             }
         }
     }
+    
+    /** 
+     * @param supply
+     */
     public void removePersonalBelonging(Supply supply) {
         if (this.personalBelongings != null) {
             this.personalBelongings.remove(supply);
         }
     }
+    
+    /** 
+     * @param familyConnection
+     * @throws IllegalArgumentException
+     */
     public void addFamilyConnection(FamilyRelation familyConnection) throws IllegalArgumentException {
         if (familyConnection.getPersonOne().getFamilyConnections() == null && familyConnection.getPersonTwo().getFamilyConnections() == null) {
 
@@ -232,6 +318,10 @@ public class DisasterVictim extends Person implements DateFormat{
             throw new IllegalArgumentException();
         }
     }
+    
+    /** 
+     * @param familyConnection
+     */
     public void removeFamilyConnection(FamilyRelation familyConnection) {
         if (this.familyConnections != null) {
             if (this == familyConnection.getPersonOne()) {
@@ -244,6 +334,10 @@ public class DisasterVictim extends Person implements DateFormat{
             }
         }
     }
+    
+    /** 
+     * @param medicalRecord
+     */
     public void addMedicalRecord(MedicalRecord medicalRecord) {
         if (this.medicalRecords == null)  {
             this.medicalRecords = new ArrayList<MedicalRecord>();
@@ -253,6 +347,11 @@ public class DisasterVictim extends Person implements DateFormat{
             this.medicalRecords.add(medicalRecord);
         }
     }
+    
+    /** 
+     * @param diet
+     * @throws IllegalArgumentException
+     */
     public void addDietraryRestriction(String diet) throws IllegalArgumentException {
         for (DietaryRestrictions d : DietaryRestrictions.values()) {
             String a = diet;
@@ -267,12 +366,21 @@ public class DisasterVictim extends Person implements DateFormat{
         }
         throw new IllegalArgumentException();
     }
+    
+    /** 
+     * @param diet
+     */
     public void removeDietaryRestriction(String diet) {
         if (this.dietaryRestrictions != null) {
             this.dietaryRestrictions.remove(diet);
         }
     }
 
+    
+    /** 
+     * @param date
+     * @return String
+     */
     public String validateDate(String date) {
         Pattern dateOfBirth_pat = Pattern.compile("^\\d{4}-\\d{2}-\\d{2}$");
         Matcher myMatcher = dateOfBirth_pat.matcher(date);

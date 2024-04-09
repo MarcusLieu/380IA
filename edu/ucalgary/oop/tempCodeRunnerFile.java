@@ -11,6 +11,10 @@ public class InquirerInterface {
         }
     }
 
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         InquirerInterface d = new InquirerInterface();
         d.createConnection();

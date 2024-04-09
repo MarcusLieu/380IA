@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class DisasterVictimInterface {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         Location siteA = new Location("siteA", "123 street NE");
         Location siteB = new Location("siteB", "123 street NE");

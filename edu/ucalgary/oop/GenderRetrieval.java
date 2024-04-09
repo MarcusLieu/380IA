@@ -13,6 +13,11 @@ public class GenderRetrieval {
         this.setGenderOptions(genders);
     }
 
+    
+    /** 
+     * @param path
+     * @return ArrayList<String>
+     */
     public ArrayList<String> readFromFile(String path) {
         ArrayList<String> linesRead = new ArrayList<String>();
         try (BufferedReader in = new BufferedReader(new FileReader(path))) {
@@ -26,10 +31,18 @@ public class GenderRetrieval {
         return linesRead;
     }
     
+    
+    /** 
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getGenderOptions() {
         return this.genderOptions;
     }
 
+    
+    /** 
+     * @param genderOptions
+     */
     public void setGenderOptions(ArrayList<String> genderOptions) {
         this.genderOptions = genderOptions;
     }

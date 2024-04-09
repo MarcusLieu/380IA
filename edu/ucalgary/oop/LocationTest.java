@@ -21,6 +21,12 @@ public class LocationTest {
         supply = new Supply("Water Bottle", 10);
     }
 
+    
+    /** 
+     * @param supplies
+     * @param supplyToCheck
+     * @return boolean
+     */
     // Helper method to check if a supply is in the list
     private boolean containsSupply(ArrayList<Supply> supplies, Supply supplyToCheck) {
         return supplies.contains(supplyToCheck);

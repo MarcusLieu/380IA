@@ -11,18 +11,34 @@ public class Supply {
         this.type = new String(type); 
     }
     
+    
+    /** 
+     * @return String
+     */
     public String getType(){
         return this.type; 
     }
 
+    
+    /** 
+     * @param type
+     */
     public void setType(String type){
         this.type = new String(type);
     }
 
+    
+    /** 
+     * @return int
+     */
     public int getQuantity(){
         return this.quantity; 
     }
 
+    
+    /** 
+     * @param quantity
+     */
     public void setQuantity(int quantity){
         this.quantity = quantity;
     }
