@@ -1,5 +1,5 @@
 /*
- java edu/ucalgary/oop/CLI
+ java edu/ucalgary/oop/DisasterVictimInterface
  */
 
 package edu.ucalgary.oop;
@@ -7,7 +7,7 @@ package edu.ucalgary.oop;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class CLI {
+public class DisasterVictimInterface {
     public static void main(String[] args) {
         Location siteA = new Location("siteA", "123 street NE");
         Location siteB = new Location("siteB", "123 street NE");
