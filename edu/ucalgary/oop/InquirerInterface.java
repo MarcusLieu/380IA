@@ -23,7 +23,6 @@ public class InquirerInterface {
     public  String PASSWORD;
 
     private Connection dbConnect;
-    private ResultSet results;
 
     public InquirerInterface(String url, String user, String pw) {
         this.DBURL = url;
@@ -39,6 +38,10 @@ public class InquirerInterface {
             e.printStackTrace();
         }
     }
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         String url = "jdbc:mysql://localhost:3306/ensf380project";
         String username = "oop";
