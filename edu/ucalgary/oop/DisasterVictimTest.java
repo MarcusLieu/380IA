@@ -16,7 +16,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 import org.xml.sax.helpers.LocatorImpl;
-
+/**
+ * Junit tests for DisasterVictim class
+ */
 public class DisasterVictimTest {
     private DisasterVictim victim;
     private ArrayList<Supply> suppliesToSet; 
@@ -28,6 +30,9 @@ public class DisasterVictimTest {
     private String expectedGender = "female"; 
     private String expectedComments = "Needs medical attention and speaks 2 languages";
 
+    /**
+     * Sets up the test environment before each test case.
+     */
     @Before
     public void setUp() {
         victim = new DisasterVictim(expectedFirstName, EXPECTED_ENTRY_DATE);
@@ -38,7 +43,9 @@ public class DisasterVictimTest {
         DisasterVictim victim1 = new DisasterVictim("Jane", "2024-01-20");
         DisasterVictim victim2 = new DisasterVictim("John", "2024-01-22");
     }
-
+    /**
+     * Test case for constructing a DisasterVictim with a valid entry date.
+     */
     @Test
     public void testConstructorWithValidEntryDate() {
         String validEntryDate = "2024-01-18";
@@ -46,7 +53,9 @@ public class DisasterVictimTest {
         assertNotNull("Constructor should successfully create an instance with a valid entry date", victim);
         assertEquals("Constructor should set the entry date correctly", validEntryDate, victim.getEntryDate());
     }
-
+    /**
+     * Test case for constructing a DisasterVictim with an invalid entry date format.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testConstructorWithInvalidEntryDateFormat() {
         String invalidEntryDate = "18/01/2024"; // Incorrect format according to your specifications
@@ -54,39 +63,51 @@ public class DisasterVictimTest {
         // Expecting IllegalArgumentException due to invalid date format
     }
 
-
+    /**
+     * Test case for setting the date of birth of a DisasterVictim.
+     */
     @Test
     public void testSetDateOfBirth() {
         String newDateOfBirth = "1987-05-21";
         victim.setDateOfBirth(newDateOfBirth);
         assertEquals("setDateOfBirth should correctly update the date of birth", newDateOfBirth, victim.getDateOfBirth());
     }
-
+    /**
+     * Test case for setting the date of birth of a DisasterVictim with an invalid format.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testSetDateOfBirthWithInvalidFormat() {
         victim.setDateOfBirth(invalidDate); // This format should cause an exception
     }
-	
+	/**
+    * Test case for setting and getting the first name of a DisasterVictim.
+    */
 	@Test
     public void testSetAndGetFirstName() {
         String newFirstName = "Alice";
         victim.setFirstName(newFirstName);
         assertEquals("setFirstName should update and getFirstName should return the new first name", newFirstName, victim.getFirstName());
     }
-
+    /**
+     * Test case for setting and getting the last name of a DisasterVictim.
+     */    
     @Test
     public void testSetAndGetLastName() {
         String newLastName = "Smith";
         victim.setLastName(newLastName);
         assertEquals("setLastName should update and getLastName should return the new last name", newLastName, victim.getLastName());
     }
-
+    /**
+     * Test case for getting comments of a DisasterVictim.
+     */
     @Test
     public void testGetComments() {
         victim.setComments(expectedComments);
         assertEquals("getComments should return the initial correct comments", expectedComments, victim.getComments());
     }
-
+    /**
+     * Test case for setting comments of a DisasterVictim.
+     */
     @Test
     public void testSetComments() {
         victim.setComments(expectedComments);
@@ -94,7 +115,9 @@ public class DisasterVictimTest {
         victim.setComments(newComments);
         assertEquals("setComments should update the comments correctly", newComments, victim.getComments());
     }
-
+    /**
+     * Test case for getting the assigned social ID of a DisasterVictim.
+     */
     @Test
     public void testGetAssignedSocialID() {
         // The next victim should have an ID one higher than the previous victim
@@ -105,13 +128,17 @@ public class DisasterVictimTest {
 
         assertEquals("getAssignedSocialID should return the expected social ID", expectedSocialId, actualVictim.getAssignedSocialID());
     }
-
+    /**
+     * Test case for getting the entry date of a DisasterVictim.
+     */
     @Test
     public void testGetEntryDate() {
         assertEquals("getEntryDate should return the expected entry date", EXPECTED_ENTRY_DATE, victim.getEntryDate());
     }
    
-
+    /**
+     * Test case for adding a family connection to a DisasterVictim.
+     */
     @Test
     public void testAddFamilyConnection() {
         DisasterVictim victim1 = new DisasterVictim("Jane", "2024-01-20");
@@ -130,7 +157,9 @@ public class DisasterVictimTest {
         }
         assertTrue("addFamilyConnection should add a family relationship", correct);
     }
-
+    /**
+     * Test case for adding a personal belonging to a DisasterVictim.
+     */
     @Test
     public void testAddPersonalBelonging() {
         Supply newSupply = new Supply("Emergency Kit", 1);
@@ -149,7 +178,9 @@ public class DisasterVictimTest {
         }
         assertTrue("addPersonalBelonging should add the supply to personal belongings", correct);
     }
-
+    /**
+     * Test case for removing a family connection from a DisasterVictim.
+     */
     @Test
     public void testRemoveFamilyConnection() {
         DisasterVictim victim1 = new DisasterVictim("Jane", "2024-01-20");
@@ -181,7 +212,9 @@ public class DisasterVictimTest {
         }
     assertTrue("removeFamilyConnection should remove the family member", true);
 }  
-
+    /**
+     * Test case for removing a personal belonging from a DisasterVictim.
+     */
     @Test
     public void testRemovePersonalBelonging() {
     
@@ -202,7 +235,9 @@ public class DisasterVictimTest {
     assertTrue("removePersonalBelonging should remove the supply from personal belongings", true);
 }
 
-
+    /**
+     * Test case for setting a family connection for a DisasterVictim.
+     */
     @Test
     public void testSetFamilyConnection() {
         DisasterVictim victim1 = new DisasterVictim("Jane", "2024-01-20");
@@ -228,7 +263,9 @@ public class DisasterVictimTest {
        }
        assertTrue("Family relation should be set", correct);
     }
-
+    /**
+     * Test case for setting medical records for a DisasterVictim.
+     */
     @Test
     public void testSetMedicalRecords() {
         Location testLocation = new Location("Shelter Z", "1234 Shelter Ave");
@@ -254,7 +291,9 @@ public class DisasterVictimTest {
         assertTrue("setMedicalRecords should correctly update medical records", correct);
 }
 
-
+    /**
+     * Test case for setting personal belongings for a DisasterVictim.
+     */
     @Test
     public void testSetPersonalBelongings() {
         Supply one = new Supply("Tent", 1);
@@ -280,7 +319,9 @@ public class DisasterVictimTest {
         }
         assertTrue("setPersonalBelongings should correctly update personal belongings", correct);
     }
-
+    /**
+     * Test case to check the supply size if the supply is not in the location.
+     */
     @Test
     public void testSupplySizeIfNotInLocation() {
         Location testLocation = new Location("test shelter", "4321 Shelter Ave");
@@ -298,7 +339,9 @@ public class DisasterVictimTest {
         }
         assertTrue("addPersonalBelongings should correctly update personalBelongings", correct);
     }
-
+    /**
+     * Test case to check if the last name is set correctly for a DisasterVictim.
+     */
     @Test
     public void testPersonAbstraction() {
         DisasterVictim testVictim = new DisasterVictim("joey", "2024-01-20");
@@ -310,12 +353,16 @@ public class DisasterVictimTest {
         }
         assertTrue("Disaster victim should inherit set last name from person", correct);
     }
-
+    /**
+     * Test case for checking the date format interface.
+     */
     @Test(expected = IllegalArgumentException.class)    
     public void testDateFormatInterface() {
         DisasterVictim invalidVictim = new DisasterVictim("bob", "98/01/2024");
     }
-
+    /**
+     * Test case for setting and getting the gender for a DisasterVictim.
+     */
     @Test
     public void testSetAndGetGender() {
         GenderRetrieval genderFile = new GenderRetrieval("edu/ucalgary/oop/GenderOptions.txt");
@@ -323,7 +370,9 @@ public class DisasterVictimTest {
         victim.setGender(newGender, genderFile);
         assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
-
+    /**
+     * Test case for checking if an invalid gender is provided.
+     */
     @Test(expected = IllegalArgumentException.class)    
     public void testInvalidGender() {
         String newGender = "dragon";
@@ -331,21 +380,27 @@ public class DisasterVictimTest {
         victim.setGender(newGender, genderFile);
         assertEquals("setGender should update and getGender should return the new gender", newGender.toLowerCase(), victim.getGender());
     }
-
+    /**
+     * Test case for setting the age and then the birthdate.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testAgethenBirthdate() {
         DisasterVictim testVictim1 = new DisasterVictim("bill", "2024-01-20");
         testVictim1.setAge(19);
         testVictim1.setDateOfBirth("1987-05-21");
     } 
-
+    /**
+     * Test case for setting the birthdate and then the age.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testBirthDatethenAge() {
         DisasterVictim testVictim1 = new DisasterVictim("bill", "2024-01-20");
         testVictim1.setDateOfBirth("1987-05-21");
         testVictim1.setAge(19);
     } 
-
+    /**
+     * Test case for adding dietary restrictions to a DisasterVictim.
+     */
     @Test
     public void testAddDietaryRestriction() {
        DisasterVictim dietVictim = new DisasterVictim("joe", "2024-01-20");
@@ -353,7 +408,9 @@ public class DisasterVictimTest {
        dietVictim.addDietraryRestriction("VGML");
        assertEquals("setDietaryRestrictions should correctly set the field if the input is in the enum dietary restrictions class", 2, dietVictim.getDietaryRestrictions().size());
     }
-
+    /**
+     * Test case for adding an invalid dietary restriction to a DisasterVictim.
+     */
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidDietaryRestriction() {
         DisasterVictim dietVictim2 = new DisasterVictim("bill", "2024-01-20");

@@ -1,7 +1,11 @@
+
+
 package edu.ucalgary.oop;
 
 import java.util.ArrayList;
-
+/**
+ * represents a place where disaster victims are placed, and where supplies is located
+ */
 public class Location {
     private String name;
     private String address;

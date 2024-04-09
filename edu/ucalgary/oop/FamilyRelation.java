@@ -1,5 +1,8 @@
-package edu.ucalgary.oop;
 
+package edu.ucalgary.oop;
+/**
+ * describes a relation between two disaster victims
+ */
 public class FamilyRelation {
     private DisasterVictim personOne;
     private String relationshipTo;

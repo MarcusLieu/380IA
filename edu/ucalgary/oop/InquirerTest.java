@@ -6,74 +6,62 @@ import static org.junit.Assert.*;
 
 import javax.sound.midi.SysexMessage;
 
-
+/**
+ * Junit tests for Inquirer class
+ */
 public class InquirerTest {
     
-/* 
-Define the values which will be used for tests
-*/
+
 private String expectedFirstName = "Joseph";
 private String expectedLastName = "Bouillon";
 private String expectedPhoneNumber = "+1-123-456-7890";
 private String expectedMessage = "looking for my family members";
 private Inquirer inquirer = new Inquirer(expectedFirstName, expectedLastName, expectedPhoneNumber, expectedMessage);
 
-/*
-testObjectCreation -> means testing Inquirer constructor: 
-   - What we need: To verify that an "Inquirer" object is successfully created.
-   - Actual result: The name "Joseph Bouillon", the services phone number "+1-123-456-7890", and the provided info is "looking for my family members".
-   - Expected Result: The test checks that the Inquirer object is not null, confirming successful object creation.
-*/
+
+    /**
+     * Test case for verifying the creation of an Inquirer object.
+     */
     @Test
     public void testObjectCreation() {
         assertNotNull(inquirer);
     }
 
-/*
-testGetFirstName**: 
-   - What we need: To ensure the "getFirstName()" method correctly returns the actual inquirer's first name.
-   - Actual result: "Joseph".
-   - Expected result: "inquirer.getFirstName()" should return "Joseph".
-   */
+    /**
+     * Test case for getting the first name of the inquirer.
+     */
     @Test
     public void testGetFirstName() {
         assertEquals("getFirstName() should return inquirer's first name", expectedFirstName, inquirer.getFirstName());
     }
-	
-/*
-testGetLastName: 
-   - What we need: To confirm that the "getLastName()" method accurately returns inquirer's last name.
-   - Actual result:"Bouillon".
-   - Expected result: "inquirer.getLastName()" should return "Bouillon".
-*/
+
+    /**
+     * Test case for getting the last name of the inquirer.
+     */
     @Test
     public void testGetLastName() {
         assertEquals("getLastName() should return inquirer's last name", expectedLastName, inquirer.getLastName());
     }
-	
-/*
-testGetServicesPhoneNum**: 
-   - What we need: To confirm that "getServicesPhoneNum()" method correctly returns the services phone number.
-   - Actual result: "+1-123-456-7890".
-   - Expected result: "inquirer.getServicesPhoneNum()" should return "+1-123-456-7890".
-*/
+
+    /**
+     * Test case for getting the services phone number of the inquirer.
+     */
     @Test
     public void testGetServicesPhoneNum() {
-
-        assertEquals("getServicesPhoneNum() should return the correct Services Number",expectedPhoneNumber, inquirer.getServicesPhoneNum());
+        assertEquals("getServicesPhoneNum() should return the correct Services Number", expectedPhoneNumber, inquirer.getServicesPhoneNum());
     }
-	
-/*
-testGetInfo:
-   - What we need: To confirm that "getInfo()" method retrieves the correct information string. 
-   - Actual result: "looking for my family members".
-   - Expected result: "inquirer.getInfo()" should return the string "looking for my family members".
-*/
+
+    /**
+     * Test case for getting the information provided by the inquirer.
+     */
     @Test
     public void testGetInfo() {
-        assertEquals("getInfo() should return the inquirer message", expectedMessage,inquirer.getInfo());
+        assertEquals("getInfo() should return the inquirer message", expectedMessage, inquirer.getInfo());
     }
 
+    /**
+     * Test case for verifying that an Inquirer object inherits the set last name functionality from the Person class.
+     */
     @Test
     public void testPersonAbstraction() {
         Inquirer testInquirer = new Inquirer("joey", "dick", "+1-123-456-7891", "looking for joe");
@@ -86,6 +74,9 @@ testGetInfo:
         assertTrue("Inquirer should inherit set last name from person", correct);
     }
 
+    /**
+     * Test case for verifying that making multiple relief service requests increases the log count for an inquirer.
+     */
     @Test
     public void testMultipleInteractions() {
         Inquirer testInquirer2 = new Inquirer("joe", "doe", "+1-123-456-7891", "looking for bill");
@@ -95,5 +86,6 @@ testGetInfo:
         ReliefService testReliefService2 = new ReliefService(testInquirer2, missingVictim, "2024-01-21", expectedFirstName, testLocation);
         assertEquals("Inquirer making another relief services should increase log count", 2, testInquirer2.getLogHistory().size());
     }
+
 }
 

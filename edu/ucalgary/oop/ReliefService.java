@@ -2,7 +2,9 @@
 package edu.ucalgary.oop;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * describes a report looking for a disaster victim from an inquirer
+ */
 public class ReliefService implements DateFormat{
     private Inquirer inquirer;
     private DisasterVictim missingPerson;

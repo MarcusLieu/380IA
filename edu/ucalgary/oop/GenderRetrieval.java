@@ -1,8 +1,12 @@
+
+
 package edu.ucalgary.oop;
 
 import java.io.*;
 import java.util.ArrayList;
-
+/**
+ * reads genders from a given text file
+ */
 public class GenderRetrieval {
     private ArrayList<String> genderOptions;
     private String fileName;

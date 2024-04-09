@@ -1,3 +1,5 @@
+
+
 package edu.ucalgary.oop;
 
 import java.util.ArrayList;
@@ -15,7 +17,9 @@ enum DietaryRestrictions {
     VGML,
     VJML
 }
-
+/**
+ * A victim with a unique id, medical records, relations, allocated supplies
+ */
 public class DisasterVictim extends Person implements DateFormat{
     private String comments;
     private int ASSIGNED_SOCIAL_ID;

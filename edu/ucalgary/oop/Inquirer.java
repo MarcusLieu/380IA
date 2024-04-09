@@ -1,7 +1,10 @@
+
 package edu.ucalgary.oop;
 
 import java.util.ArrayList;
-
+/**
+ * an individual looking for disaster victims
+ */
 public class Inquirer extends Person{
 
     private String info;

@@ -15,7 +15,9 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * an interface to add inquirers and inquiry logs to mysql database, and to also search for disaster victims
+ */
 public class InquirerInterface {
 
     public  String DBURL;

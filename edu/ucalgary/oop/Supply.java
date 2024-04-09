@@ -1,5 +1,8 @@
-package edu.ucalgary.oop;
 
+package edu.ucalgary.oop;
+/**
+ * things that can be allocated to disaster victims that are stored in specific locations
+ */
 public class Supply {
     private String type; 
     private int quantity; 

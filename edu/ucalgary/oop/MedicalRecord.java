@@ -1,8 +1,11 @@
+
 package edu.ucalgary.oop;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+/**
+ * describes important details relating to a victims medical status
+ */
 public class MedicalRecord implements DateFormat{
     private Location location; 
     private String treatmentDetails;

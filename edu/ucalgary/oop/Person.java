@@ -1,5 +1,8 @@
-package edu.ucalgary.oop;
 
+package edu.ucalgary.oop;
+/**
+ * abstract class that disaster victims and inquirers inherit from
+ */
 public abstract class Person {
     public String firstName;
     public String lastName;

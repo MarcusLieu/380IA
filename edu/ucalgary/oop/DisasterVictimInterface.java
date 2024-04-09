@@ -1,4 +1,5 @@
 /*
+ javac edu/ucalgary/oop/DisasterVictimInterface.java
  java edu/ucalgary/oop/DisasterVictimInterface
  */
 
@@ -7,6 +8,9 @@ package edu.ucalgary.oop;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * interface to add disaster victims to locations
+ */
 public class DisasterVictimInterface {
     
     /** 
