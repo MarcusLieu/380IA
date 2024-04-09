@@ -17,7 +17,8 @@ public class Location {
 
     
     /** 
-     * @return String
+     * gets name field
+     * @return name as String
      */
     public String getName() {
         return this.name;
@@ -25,7 +26,8 @@ public class Location {
 
     
     /** 
-     * @param name
+     * set name field
+     * @param name as String
      */
     public void setName(String name) {
         this.name = name;
@@ -33,7 +35,8 @@ public class Location {
 
     
     /** 
-     * @return String
+     * gets address field
+     * @return address as String
      */
     public String getAddress() {
         return this.address;
@@ -41,7 +44,8 @@ public class Location {
 
     
     /** 
-     * @param address
+     * set address field
+     * @param address as string
      */
     public void setAddress(String address) {
         this.address = address;
@@ -49,7 +53,8 @@ public class Location {
 
     
     /** 
-     * @return ArrayList<DisasterVictim>
+     * gets occupants field
+     * @return occupants as array list
      */
     public ArrayList<DisasterVictim> getOccupants() {
         return this.occupants;
@@ -57,7 +62,8 @@ public class Location {
 
     
     /** 
-     * @param occupants
+     * sets occupants field
+     * @param occupants as array list of disaster victims
      */
     public void setOccupants(ArrayList<DisasterVictim> occupants) {
         this.occupants = occupants;
@@ -65,7 +71,8 @@ public class Location {
 
     
     /** 
-     * @return ArrayList<Supply>
+     * gets supplies field
+     * @return supplies as array list
      */
     public ArrayList<Supply> getSupplies() {
         return this.supplies;
@@ -73,7 +80,8 @@ public class Location {
 
     
     /** 
-     * @param supplies
+     * sets supplies field
+     * @param supplies as array list of supplies
      */
     public void setSupplies(ArrayList<Supply> supplies) {
         this.supplies = supplies;
@@ -81,7 +89,8 @@ public class Location {
 
     
     /** 
-     * @param occupant
+     * adds element to occupants field
+     * @param occupant as disaster victim object
      */
     public void addOccupant(DisasterVictim occupant) {
         if (!this.occupants.contains(occupant)) {
@@ -91,7 +100,8 @@ public class Location {
 
     
     /** 
-     * @param occupant
+     * removes element from occupants field
+     * @param occupant as disaster victim
      */
     public void removeOccupant(DisasterVictim occupant) {
         this.occupants.remove(occupant);
@@ -99,7 +109,8 @@ public class Location {
 
     
     /** 
-     * @param supply
+     * adds element to supply field if it is not already in it
+     * @param supply as supply object
      */
     public void addSupply(Supply supply) {
         if (!this.supplies.contains(supply)) {
@@ -109,7 +120,8 @@ public class Location {
 
     
     /** 
-     * @param supply
+     * removes element from supply field
+     * @param supply as supply
      */
     public void removeSupply(Supply supply) {
         this.supplies.remove(supply);
