@@ -15,12 +15,14 @@
 
 DROP DATABASE IF EXISTS ensf380project;
 CREATE DATABASE ensf380project;
+
 CREATE TABLE INQUIRER (
     id SERIAL PRIMARY KEY,
     firstName VARCHAR(50) NOT NULL,
     lastName VARCHAR(50),
     phoneNumber VARCHAR(20) NOT NULL
 );
+
 INSERT INTO INQUIRER (id, firstName, lastName, phoneNumber) VALUES
 (1, 'Dominik', 'Pflug', '123-456-9831'),
 (2, 'Yaa', 'Odei', '123-456-8913'),
