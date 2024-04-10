@@ -38,7 +38,6 @@ public class DisasterVictim extends Person implements DateFormat{
         String validatedDate = validateDate(ENTRY_DATE);
         this.ENTRY_DATE = validatedDate;
     }
-
     
     /** 
      * gets the date of birth of a disaster victim
