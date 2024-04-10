@@ -13,14 +13,8 @@
  clearly include this information in your instructions.
  */
 
-
-
-
 DROP DATABASE IF EXISTS ensf380project;
 CREATE DATABASE ensf380project;
-\c ensf380project
-
-
 CREATE TABLE INQUIRER (
     id SERIAL PRIMARY KEY,
     firstName VARCHAR(50) NOT NULL,
@@ -38,7 +32,7 @@ INSERT INTO INQUIRER (id, firstName, phoneNumber) VALUES
 
 CREATE TABLE INQUIRY_LOG (
     id SERIAL PRIMARY KEY,
-    inquirer int NOT NULL,
+    inquirer bigint unsigned NOT NULL,
     callDate DATE NOT NULL,
     details VARCHAR(500) NOT NULL,
     foreign key (inquirer) references INQUIRER(id) ON UPDATE CASCADE
@@ -54,4 +48,7 @@ INSERT INTO INQUIRY_LOG (id, inquirer, callDate, details) VALUES
 (7, 5, '2024-03-02', 'Henk Wouters'),
 (8, 3, '2024-03-03', 'Melinda'),
 (9, 6, '2024-03-04', 'Julius');
+
+CREATE USER 'oop'@'localhost' IDENTIFIED BY 'ucalgary';
+GRANT ALL PRIVILEGES ON ensf380project.* TO 'oop'@'localhost';
 
